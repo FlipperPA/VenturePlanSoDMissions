@@ -22,7 +22,16 @@ To expose VenturePlan's internal data you will need to edit its source code. Fir
 
 ![Notepad preview of changed file](img/notepad.png)
 
-This makes the internal data of the addon (`T`) available to other addons (by putting it in the global table, `_G`, which every addon has available to it). In general you shouldn't be messing with addons like this, because it's a great way of getting hacked, but in this case there's no way around it. _caveat emptor_
+This makes certain internal data of the addon (`T`) available to other addons (by putting it in the global table, `_G`, which every addon has available to it). In general you shouldn't be messing with addons like this, because it's a great way of getting hacked, but in this case there's no way around it. _caveat emptor_
+
+There is one more piece of internal data that needs to be made available. Scroll further down until you see the line that starts with `local overrideAA =` and insert the line `T.overrideAA = overrideAA` directly underneath. The code should now look like this:
+
+```lua
+do -- targets
+    local overrideAA = {[57]=0, [181]=0, [209]=0, [341]=0, [409]=1, [777]=0, [1213]=0, [69424]=0, [69426]=0, [69432]=0, [69434]=0, [69518]=0, [69522]=0, [69524]=0, [69530]=0, [69646]=0, [69648]=0, [69650]=0, [69652]=0, [70286]=0, [70288]=0, [70290]=0, [70292]=0, [70456]=0, [70478]=0, [70550]=0, [70556]=0, [70584]=0, [70586]=0, [70638]=0, [70640]=0, [70642]=0, [70644]=0, [70678]=0, [70682]=0, [70684]=0, [70702]=0, [70704]=0, [70706]=0, [70708]=0, [70714]=0, [70806]=0, [70808]=0, [70812]=0, [70832]=0, [70862]=0, [70868]=0, [70874]=0, [70908]=0, [71194]=0, [71606]=0, [71612]=0, [71640]=0, [71670]=0, [71672]=0, [71674]=0, [71676]=0, [71736]=0, [71800]=0, [71802]=0, [72086]=0, [72088]=0, [72090]=0, [72092]=0, [72310]=0, [72314]=0, [72336]=0, [72338]=0, [72942]=0, [72944]=0, [72946]=0, [72948]=0, [72954]=0, [73210]=0, [73398]=0, [73404]=0, [73558]=0, [73560]=0, [73564]=0}
+    T.overrideAA = overrideAA
+    local targetLists do
+```
 
 # Hotfixing the Code for Renown Level 62 and Above
 

@@ -116,14 +116,47 @@ T.UnverifiedSpells = {
     [340]={type="nuke", target=1, damageATK=60}, --Tainted Bite (UNVERIFIED)
 }
 
-if VenturePlan ~= nil then 
+T.MoreOverrideAA = {
+    [1225]=0, --Elwyn (see #54)
+    [1237]=0, --Ella (see #60)
+    [1257]=0, --Cromas the Mystic (see #60)
+    [1301]=0, --Chachi the Artiste (see #60)
+    [73654]=0, --Learn from the Master, Security Specialist (see #51)
+    [73718]=0, --Customary Shakedown, Support Officer (see #39)
+    [73720]=0, --Customary Shakedown, Support Officer (see #39)
+    [73722]=0, --Customary Shakedown, Support Officer (see #39)
+    [73724]=0, --Customary Shakedown, Support Officer (see #39)
+    [73742]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73744]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73746]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73748]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73750]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73752]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73754]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73756]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73776]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73778]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73780]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73784]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73786]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73788]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73846]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73848]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73850]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73852]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73998]=0 --Hunter Becomes the Hunted, Frenzied Razorwing (see #62)
+}
+
+if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
     for k,v in pairs(T.MoreSpells) do
         VenturePlan.KnownSpells[k] = v
     end
     for k,v in pairs(T.UnverifiedSpells) do
         VenturePlan.KnownSpells[k] = v
     end
+    for k,v in pairs(T.MoreOverrideAA) do
+        VenturePlan.overrideAA[k] = v
+    end
 else 
     message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/hythloday/VenturePlanSoDMissions")
 end
-
