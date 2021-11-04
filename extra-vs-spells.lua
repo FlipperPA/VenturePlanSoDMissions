@@ -134,17 +134,19 @@ T.MoreOverrideAA = {
     [73752]=0, --A Few Too Many, Unruly Patron (see #44)
     [73754]=0, --A Few Too Many, Unruly Patron (see #44)
     [73756]=0, --A Few Too Many, Unruly Patron (see #44)
-    [73776]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
-    [73778]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
-    [73780]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
-    [73784]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
-    [73786]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
-    [73788]=0, --Unexpected Delays, P.O.S.T Worker and Defective Sorter (see #48)
+    [73776]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
+    [73778]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
+    [73780]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
     [73846]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73848]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73850]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73852]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73998]=0 --Hunter Becomes the Hunted, Frenzied Razorwing (see #62)
+}
+
+T.RemoveOverrideAA = {
+    209,
+    409
 }
 
 if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
@@ -156,6 +158,9 @@ if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
     end
     for k,v in pairs(T.MoreOverrideAA) do
         VenturePlan.overrideAA[k] = v
+    end
+    for _,v in pairs(T.RemoveOverrideAA) do
+        VenturePlan.overrideAA[v] = nil
     end
 else 
     message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/hythloday/VenturePlanSoDMissions")
