@@ -39,8 +39,16 @@ function to_string( tbl )
 end
 
 T.MoreSpells = {
+    [125]={
+		{type="nuke", damageATK=60, target="random-enemy"},
+		{type="aura", modDamageDealt=-50, target="random-enemy", duration=1},
+	}, -- Deranged Gouge (Possessed Scavenger), see #64
     [305]={type="nuke", target="enemy-back", damageATK=120}, --Roots of Submission
     [306]={type="aura", target=3, duration=3, modMaxHPATK=60, plusDamageDealtATK=40}, --Arcane Empowerment
+    [310]={
+		{type="nuke", damageATK=140, target=0},
+		{type="aura", modDamageDealt=20, target=4, duration=2},
+	}, -- Axe of Determination (Ben Howell), see #64
     [311]={
         {type="heal", target=3, healATK=120},
         {type="aura", target=3, duration=2, modMaxHPATK=40},
@@ -79,6 +87,7 @@ T.MoreSpells = {
 		{type="aura", target=1, duration=3, plusDamageTakenATK=20},
 	}, --Tainted Bite
     [349]={type="nuke", target="all-enemies", damageATK=8}, --Anima Swell
+    [356]={type="nuke", damageATK=100, target=1}, -- Bone Ambush (Locating The Cache), see #64
 }
 
 T.UnverifiedSpells = {
@@ -88,10 +97,6 @@ T.UnverifiedSpells = {
         {type="heal", target="all-allies", healATK=200},
         {type="aura", target="all-allies", duration=1, modDamageDealt=30},
     }, --Threads of Fate (UNVERIFIED)
-    [310]={
-        {type="nuke", target=0, damageATK=140},
-        {type="aura", target=4, duration=1, modDamageDealt=20},
-    }, --Axe of Determination (UNVERIFIED)
     [312]={type="nuke", target="cone", damageATK=180}, --Panoptic Beam (UNVERIFIED)
     [313]={type="heal", target="all-allies", healATK=70}, --Spirit's Guidance (UNVERIFIED)
     [314]={
@@ -141,12 +146,12 @@ T.MoreOverrideAA = {
     [73848]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73850]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
     [73852]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
-    [73998]=0 --Hunter Becomes the Hunted, Frenzied Razorwing (see #62)
+    [73998]=0, --Hunter Becomes the Hunted, Frenzied Razorwing (see #62)
 }
 
 T.RemoveOverrideAA = {
     209,
-    409
+    409,
 }
 
 if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
@@ -162,6 +167,6 @@ if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
     for _,v in pairs(T.RemoveOverrideAA) do
         VenturePlan.overrideAA[v] = nil
     end
-else 
+else
     message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/hythloday/VenturePlanSoDMissions")
 end
