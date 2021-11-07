@@ -151,7 +151,10 @@ T.RemoveOverrideAA = {
     409,
 }
 
-if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
+if VenturePlan ~= nil then
+    if not VenturePlan.overrideAA then
+        VenturePlan.overrideAA = {}
+    end
     for k,v in pairs(T.MoreSpells) do
         VenturePlan.KnownSpells[k] = v
     end
@@ -164,6 +167,6 @@ if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
     for _,v in pairs(T.RemoveOverrideAA) do
         VenturePlan.overrideAA[v] = nil
     end
-else
-    message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/hythloday/VenturePlanSoDMissions")
+else 
+    message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/Divergentcurl/VenturePlanSoDMissions")
 end
