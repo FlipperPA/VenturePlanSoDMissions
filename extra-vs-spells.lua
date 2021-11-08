@@ -39,8 +39,13 @@ function to_string( tbl )
 end
 
 T.MoreSpells = {
+    [125]={type="aura", damageATK1=60, modDamageDealt=-50, target="random-enemy", duration=1}, -- Deranged Gouge (Possessed Scavenger), see #64
     [305]={type="nuke", target="enemy-back", damageATK=120}, --Roots of Submission
     [306]={type="aura", target=3, duration=3, modMaxHPATK=60, plusDamageDealtATK=40}, --Arcane Empowerment
+    [310]={
+		{type="nuke", damageATK=140, target=0},
+		{type="aura", modDamageDealt=20, target=4, duration=2},
+	}, -- Axe of Determination (Ben Howell), see #64
     [311]={
         {type="heal", target=3, healATK=120},
         {type="aura", target=3, duration=2, modMaxHPATK=40},
@@ -79,6 +84,7 @@ T.MoreSpells = {
 		{type="aura", target=1, duration=3, plusDamageTakenATK=20},
 	}, --Tainted Bite
     [349]={type="nuke", target="all-enemies", damageATK=8}, --Anima Swell
+    [356]={type="nuke", damageATK=100, target=1}, -- Bone Ambush (Locating The Cache), see #64
 }
 
 T.UnverifiedSpells = {
@@ -88,10 +94,6 @@ T.UnverifiedSpells = {
         {type="heal", target="all-allies", healATK=200},
         {type="aura", target="all-allies", duration=1, modDamageDealt=30},
     }, --Threads of Fate (UNVERIFIED)
-    [310]={
-        {type="nuke", target=0, damageATK=140},
-        {type="aura", target=4, duration=1, modDamageDealt=20},
-    }, --Axe of Determination (UNVERIFIED)
     [312]={type="nuke", target="cone", damageATK=180}, --Panoptic Beam (UNVERIFIED)
     [313]={type="heal", target="all-allies", healATK=70}, --Spirit's Guidance (UNVERIFIED)
     [314]={
@@ -116,14 +118,52 @@ T.UnverifiedSpells = {
     [340]={type="nuke", target=1, damageATK=60}, --Tainted Bite (UNVERIFIED)
 }
 
-if VenturePlan ~= nil then 
+T.MoreOverrideAA = {
+    [1225]=0, --Elwyn (see #54)
+    [1237]=0, --Ella (see #60)
+    [1257]=0, --Cromas the Mystic (see #60)
+    [1301]=0, --Chachi the Artiste (see #60)
+    [73654]=0, --Learn from the Master, Security Specialist (see #51)
+    [73718]=0, --Customary Shakedown, Support Officer (see #39)
+    [73720]=0, --Customary Shakedown, Support Officer (see #39)
+    [73722]=0, --Customary Shakedown, Support Officer (see #39)
+    [73724]=0, --Customary Shakedown, Support Officer (see #39)
+    [73742]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73744]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73746]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73748]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73750]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73752]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73754]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73756]=0, --A Few Too Many, Unruly Patron (see #44)
+    [73776]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
+    [73778]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
+    [73780]=0, --Unexpected Delays, P.O.S.T Worker (see #48 and #60)
+    [73846]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73848]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73850]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73852]=0, --Piratical Problems, Corsair Cannoneer and Corsair Wavebender (see #45)
+    [73998]=0, --Hunter Becomes the Hunted, Frenzied Razorwing (see #62)
+}
+
+T.RemoveOverrideAA = {
+    209,
+    409,
+}
+
+if VenturePlan ~= nil and VenturePlan.overrideAA ~= nil then
     for k,v in pairs(T.MoreSpells) do
         VenturePlan.KnownSpells[k] = v
     end
     for k,v in pairs(T.UnverifiedSpells) do
         VenturePlan.KnownSpells[k] = v
     end
-else 
-    message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/hythloday/VenturePlanSoDMissions")
+    for k,v in pairs(T.MoreOverrideAA) do
+        VenturePlan.overrideAA[k] = v
+    end
+    for _,v in pairs(T.RemoveOverrideAA) do
+        VenturePlan.overrideAA[v] = nil
+    end
+else
+    message("You are running an undoctored version of VenturePlan. Instructions on how to make this addon work are at https://github.com/Divergentcurl/VenturePlanSoDMissions")
 end
-
